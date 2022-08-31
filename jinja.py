@@ -8,7 +8,9 @@ cities = [{'id': 1, 'city': 'Москва'},
 
 link = '''<select name="cities">
 {% for c in cities -%}
+{% if c.id < 6 -%}
     <option value="{{c['id']}}">{{c['city']}}</option>
+{% endif -%}
 {% endfor -%}
 </select>'''
 

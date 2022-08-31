@@ -1,0 +1,56 @@
+napr = int(input("Что вы хотите сделать? \n 1 - шифрование \n 2 - дешифрование"))
+lang = int(input("Какой язык? \n 1 - русский \n 2 - английский"))
+sdvig = int(input("Какой шаг сдвига?"))
+
+slovo = input("Введите фразу")
+
+def lang_par(lang):
+    if lang == 1:
+        return 32, 1039, 1071
+    else:
+        return 26, 64, 96
+
+
+def crypto(slovo, lang_len, upper, lower, sdvig):
+    for c in slovo:
+        if c in ' ?!.,:':
+            print(c, end='')
+        elif c == c.upper():
+            if ord(c) + sdvig <= (upper + lang_len):
+                print(chr(ord(c) + sdvig), end='')
+            else:
+                print(chr(ord(c) + sdvig - lang_len), end='')
+        elif c == c.lower():
+            if ord(c) + sdvig <= (lower + lang_len):
+                print(chr(ord(c) + sdvig), end='')
+            else:
+                print(chr(ord(c) + sdvig - lang_len), end='')
+    print()
+                                            
+                                            
+def decrypto(slovo, lang_len, upper, lower, sdvig):
+    for c in slovo:
+        if c in ' ?!.,:':
+            print(c, end='')
+        elif c == c.upper():
+            if ord(c) - sdvig > (upper):
+                print(chr(ord(c) - sdvig), end='')
+            else:
+                print(chr(ord(c) - sdvig + lang_len), end='')
+        elif c == c.lower():
+            if ord(c) - sdvig > (lower):
+                print(chr(ord(c) - sdvig), end='')
+            else:
+                print(chr(ord(c) - sdvig + lang_len), end='')
+    print()
+        
+x, y, z = lang_par(lang)
+
+if napr == 1:
+    crypto(slovo, x, y, z, sdvig)
+else:
+    decrypto(slovo, x, y, z, sdvig)
+
+
+#for i in range(25):
+    #decrypto("Hawnj pk swhg xabkna ukq nqj.", 26, 64, 96, i)

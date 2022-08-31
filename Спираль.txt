@@ -1,0 +1,33 @@
+# put your python code here
+x, y = [int(i) for i in input().split()]
+z = [[0] * y for _ in range(x)]
+count = 1
+kx = x
+ky = y
+nx = 0
+ny = 0
+
+while kx >= x - x // 2 and ky >= y - y // 2:
+    for i in range(ny, ky - 1):
+        z[nx][i] = count
+        count += 1
+    for i in range(nx, kx - 1):
+        z[i][ky - 1] = count
+        count += 1
+    for i in range(ky - 1, ny, -1):
+        z[kx - 1][i] = count
+        count += 1        
+    for i in range(kx - 1, nx, -1):
+        z[i][ny] = count
+        count += 1
+    kx -= 1
+    ky -= 1
+    nx += 1
+    ny += 1
+if x == y and x % 2 !=0:
+    z[x // 2][x // 2] = count
+        
+for i in range(x):
+    for j in range(y):
+        print(str(z[i][j]).ljust(3), end=' ')
+    print()

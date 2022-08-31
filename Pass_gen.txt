@@ -1,0 +1,44 @@
+from random import randint
+
+digits = '23456789'
+lowercase_letters = 'abcdefghjkmnpqrstuvwxyz'
+uppercase_letters = 'ABCDEFGHIJKMNPQRSTUVWXYZ'
+punctuation = '!#$%&*+-=?@^_'
+neodn = 'il1Lo0O'
+chars = ''
+
+kolich = int(input('Введите количество паролей'))
+dlina = int(input('Введите длину пароля'))
+digits = input('В пароле должны быть цифры?')
+zagl = input('В пароле должны быть заглавные буквы?')
+stroch = input('В пароле должны быть строчные буквы?')
+symb = input('В пароле должны быть символы?')
+neodn = input('В пароле должны быть неоднозначные символы?')
+
+if digits.lower() == 'да':
+    chars += digits
+    
+if zagl.lower() == 'да':
+    chars += uppercase_letters    
+    
+if stroch.lower() == 'да':
+    chars += lowercase_letters   
+    
+if symb.lower() == 'да':
+    chars += punctuation   
+    
+if neodn.lower() == 'да':
+    chars += neodn  
+    
+    
+print(chars)
+    
+def generate_password(length, chars):
+    passw = ''
+    for i in range(length):
+        passw += chars[randint(0, len(chars))]
+    return passw
+
+for i in range(kolich):
+    print(generate_password(dlina, chars))
+    

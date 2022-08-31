@@ -1,0 +1,29 @@
+import turtle
+from random import randint
+
+turtle.penup()
+turtle.penup()
+turtle.hideturtle()
+
+def star(size, colour, ugol):
+  turtle.pendown()
+  turtle.right(ugol)
+  turtle.pencolor(colour)
+  turtle.fillcolor(colour)
+  turtle.begin_fill()
+  for i in range(5):
+    turtle.forward(size)
+    turtle.right(180 - 36)
+  turtle.end_fill()
+  turtle.penup()
+  
+  
+def zvezdnoe_pole():
+  for i in range(100):
+    colour = (randint(0, 255), randint(0, 255), randint(0, 255))
+    ugol = randint(0, 359)
+    size = randint(30, 60)
+    turtle.goto(randint(0, 255), randint(0, 255))
+    star(size, colour, ugol)
+    
+zvezdnoe_pole()

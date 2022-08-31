@@ -1,0 +1,33 @@
+import turtle
+
+
+turtle.Screen().bgcolor('DarkBlue')
+turtle.hideturtle()
+turtle.pencolor('orange')
+turtle.dot(200)
+
+# turtle.pencolor('DarkBlue')
+
+a1 = turtle.Turtle()
+a1.hideturtle()
+a1.penup()
+a1.pencolor('DarkBlue')
+
+
+a2 = turtle.Turtle()
+a2.hideturtle()
+a2.penup()
+a2.pencolor('DarkBlue')
+
+
+for i in range(-200, 200, 1):
+  
+  a1.goto(i, 0)
+  a1.dot(200)
+  a1.tracer(20, 20)
+  a2.clear()
+  a2.goto(i + 1, 0)
+  a2.dot(200)
+  a1.tracer(20, 20)
+  a1.clear()
+  

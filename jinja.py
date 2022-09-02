@@ -1,20 +1,28 @@
 from jinja2 import Template
 
-cities = [{'id': 1, 'city': 'Москва'},
-          {'id': 5, 'city': 'Тверь'},
-          {'id': 7, 'city': 'Минск'},
-          {'id': 8, 'city': 'Смоленск'},
-          {'id': 11, 'city': 'Калуга'}]
+persons = [
+    {"name": "Алексей", "old": 18, "weight": 78.5},
+    {"name": "Николай", "old": 28, "weight": 82.3},
+    {"name": "Иван", "old": 33, "weight": 94.0}
+]
 
-link = '''<select name="cities">
-{% for c in cities -%}
-{% if c.id < 6 -%}
-    <option value="{{c['id']}}">{{c['city']}}</option>
-{% endif -%}
-{% endfor -%}
-</select>'''
+html = '''
+{% macro list_users(list_of_user) -%}
+<ul>
+{% for u in users -%}
+    <li>{{u.name}} {{caller(u)}}
+{%- endfor %}
+</ul>
+{%- endmacro %}
+ 
+{% call(user) list_users(users) %}
+    <ul>
+    <li>age: {{user.old}}
+    <li>weight: {{user.weight}}
+    </ul>
+{% endcall -%}
+'''
 
-tm = Template(link)
-msg = tm.render(cities = cities)
-
+tm = Template(html)
+msg = tm.render(users = persons)
 print(msg)

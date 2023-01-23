@@ -24,17 +24,33 @@ def make_jpg_from_pdf(file):
         page.save(name_of_file, 'JPEG')
 
 def rotate_img(img):
-    pass
+    '''
+    Если ширина изображения больше его высоты - 
+    поворачивает изображение влево на 90 градусов
+    и сохраняет его под тем же именем
+    '''
+    im = Image.open(img)
+    width = im.size[0] 
+    height = im.size[1]
+    if width > height:
+        im_rotate = im.rotate(90, expand=True)
+        im_rotate.save(img, quality=25)
+        print('Файл' + img + 'повернут')
+    im.close()
+
+
 
 
 
 for file in list_of_pfds:
-    doc.add_heading(text=f'{file[:-4]}', level=2)       # Add header with name as pdf
+    doc.add_heading(text=f'{file[:-4]}', level=2)        # Add header with name as pdf
+    doc.add_paragraph(style='Рисунок')
     make_jpg_from_pdf(Path(path_of_pdf, file))
     print('jpeg создан')
     list_of_jpeg = os.listdir(path='jpg_files')
     print(list_of_jpeg)
     for jpg in list_of_jpeg:
+        rotate_img(f'{path_of_jpg}/{jpg}')
         doc.add_picture(f'{path_of_jpg}/{jpg}', height=Cm(22))          #Вставляем рисунок в ворд
         doc.add_page_break()
         print(f'jpg{jpg} добавлен')
@@ -43,3 +59,4 @@ for file in list_of_pfds:
 
 
 doc.save('Приложение.docx')
+print('Готово')

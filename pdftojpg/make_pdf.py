@@ -1,15 +1,13 @@
-from pdf2image import convert_from_path
+from PIL import Image
+
+def rotate_img(img):
+    im = Image.open(img)
+    width = im.size[0] 
+    height = im.size[1]
+    if width > height:
+        im_rotate = im.rotate(90, expand=True)
+        im_rotate.save(img)
+        im.close()
 
 
-def make_jpg_from_pdf(file):
-    '''
-    Преобразует PFF в несколько jpg изображений, которые
-    сохраняются в корневой директории
-    :param file: должен быть PDF
-    :return: файлы jpg
-    '''
-    pages = convert_from_path(file, 500, poppler_path = r"D:\YandexDisk\Прогр\pdftojpg\poppler-22.12.0\Library\bin")
-    for i, page in enumerate(pages):
-        page.save(f'out{i}.jpg', 'JPEG')
-
-
+rotate_img('test.jpg')

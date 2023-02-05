@@ -1,6 +1,8 @@
 import openpyxl as xl
 
-workbook = xl.load_workbook('Ведомость.xlsm', data_only=True)
+
+workbook = xl.load_workbook('Ведомость.xlsx', data_only=True)
+
 sheet_names = workbook.sheetnames
 
 

@@ -20,7 +20,7 @@ def make_jpg_from_pdf(file):
     '''
     pages = convert_from_path(file, 500, poppler_path = r"poppler-22.12.0/Library/bin")
     for i, page in enumerate(pages):
-        name_of_file = "{}/page_{}.jpg".format(path_of_jpg, i)
+        name_of_file = "{}/page_{:03d}.jpg".format(path_of_jpg, i)
         page.save(name_of_file, 'JPEG')
 
 def rotate_img(img):
